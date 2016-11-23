@@ -34,7 +34,11 @@ public class MyVerifier extends SecretVerifier {
         } catch (SQLException e) {
             log.log(Level.INFO, e.getMessage());
             if(context != null){
-                context.abort();
+                try {
+                    context.abort();
+                }catch(NullPointerException e){
+                    log.info(e);
+                }
             }
             return RESULT_INVALID;
         }
