@@ -36,8 +36,8 @@ public class MyVerifier extends SecretVerifier {
             if(context != null){
                 try {
                     context.abort();
-                }catch(NullPointerException e){
-                    log.info(e);
+                }catch(NullPointerException npe){
+                    log.info(npe);
                 }
             }
             return RESULT_INVALID;
@@ -54,7 +54,11 @@ public class MyVerifier extends SecretVerifier {
             if (method != Method.GET) {
                 log.log(Level.INFO, user.getIdentifier() + ": " + method.toString() + " " + request.getResourceRef().getRemainingPart());
             }
-            context.abort();
+            try {
+                context.abort();
+            }catch(NullPointerException npe){
+                log.info(npe);
+            }
             return RESULT_VALID;
         } else {
             if(context != null){
