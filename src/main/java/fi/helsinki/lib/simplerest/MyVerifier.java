@@ -62,7 +62,11 @@ public class MyVerifier extends SecretVerifier {
             return RESULT_VALID;
         } else {
             if(context != null){
-                context.abort();
+                try {
+                    context.abort();
+                }catch(NullPointerException npe){
+                    log.info(npe);
+                }
             }
             return RESULT_INVALID;
         }
