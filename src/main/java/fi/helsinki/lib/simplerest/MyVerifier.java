@@ -35,7 +35,9 @@ public class MyVerifier extends SecretVerifier {
             log.log(Level.INFO, e.getMessage());
             if(context != null){
                 try {
-                    context.abort();
+                    if(context != null) {
+                        context.abort();
+                    }
                 }catch(NullPointerException npe){
                     log.info(npe);
                 }
