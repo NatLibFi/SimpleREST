@@ -55,7 +55,10 @@ public class MyVerifier extends SecretVerifier {
                 log.log(Level.INFO, user.getIdentifier() + ": " + method.toString() + " " + request.getResourceRef().getRemainingPart());
             }
             try {
-                context.abort();
+                log.info(context);
+                if(context != null) {
+                    context.abort();
+                }
             }catch(NullPointerException npe){
                 log.info(npe);
             }

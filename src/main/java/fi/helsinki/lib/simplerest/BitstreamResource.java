@@ -225,12 +225,15 @@ public class BitstreamResource extends BaseResource {
         try{
             bitstream = Bitstream.find(context, bitstreamId);
         }catch(Exception e){
-            if(context != null)
+            if(context != null) {
                 context.abort();
+            }
             log.log(Priority.FATAL, e);
         }finally{
-            if(context != null)
+            if(context != null) {
+                log.info(context);
                 context.abort();
+            }
         }
 
         Gson gson = new Gson();
